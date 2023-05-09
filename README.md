@@ -7,7 +7,7 @@ Levenshtein.sh
 
 ### Клон репозитория
 ```bash
-git clone 
+git clone https://github.com/Dimmension/HW.-IntrToSpec.git
 ```
 ### Выдача прав файлу
 ```bash
