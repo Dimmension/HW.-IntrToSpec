@@ -15,5 +15,5 @@ chmod +x Levenshtein.sh
 ```
 ### Запуск
 ```bash
-./Levenshtein.sh
+./Levenshtein.sh example1.txt example2.txt
 ```
