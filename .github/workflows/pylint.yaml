@@ -1,1 +1,24 @@
-
+name: Проверка репозитория
+on: [push]
+jobs:
+  tests:
+    name: Тесты скрипта
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Тест положительных аргументов
+      run: |
+        chmod +x test_argsP.sh
+        ./test_argsP.sh
+    - name: Тест негативных аргументов
+      run: |
+        chmod +x test_argsN.sh
+        ./test_argsN.sh
+    - name: Тест результата №1
+      run: |
+        chmod +x test_result1.sh
+        ./test_result1.sh
+    - name: Тест результата №2
+      run: |
+        chmod +x test_result2.sh
+        ./test_result2.sh
