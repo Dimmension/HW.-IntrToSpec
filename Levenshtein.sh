@@ -1,16 +1,18 @@
 #!/bin/bash
-flag1=1
-flag2=1
+
+# проверка ввода
 if [[ ! -n $1 ]] || [[ ! -n $2 ]] 
 then
   echo "Недостаточно аргументов!"
-  flag1=0
+  exit 1
 fi
+# проверка ввода
 if [[ ! -f $1 ]] || [[ ! -f $2 ]]
 then
   echo "Введите существующего файла(.txt)"
-  flag2=0
+  exit 1
 fi
+# функция
 function calc_different(){
   local s1=$1
   local s2=$2
@@ -18,6 +20,7 @@ function calc_different(){
   local m=${#s2}
   local min=0
   local max=0
+
   if [[ n -gt m ]]
   then
     max=$n
@@ -26,8 +29,10 @@ function calc_different(){
     max=$m
     min=$n
   fi
+
   local diff=$(($max-$min))
   local i=0
+  
   for(( i=0; i<min; ++i ))
   do
     if [[ ${s1:i:1} != ${s2:i:1} ]]
@@ -38,8 +43,6 @@ function calc_different(){
     total_diff=$(($total_diff+$diff))
 }
 
-if [[ $flag1 -gt 0 ]] && [[ $flag2 -gt 0 ]] 
-then
 #кол-во строк в файле
 cnt_str1=0
 cnt_str2=0
@@ -62,7 +65,6 @@ do
   text2[cnt_str2]=$str
   cnt_str2=$(($cnt_str2+1))
   total_symbols2=$(($total_symbols2+${#str}))
-
 done < $2
 
 add_diff=0
@@ -87,8 +89,4 @@ then
   done
 fi
 total_diff=$(($total_diff+$add_diff))
-
-echo "Количество символов в первом файле - $total_symbols1"
-echo "Количество символов во втором файле - $total_symbols2"
-echo "Расстояние Левенштейна равно - $total_diff"
-fi
+echo "Количество символов в первом файле - $total_symbols1 Количество символов во втором файле - $total_symbols2 Разница символов равно - $total_diff"
